@@ -1,1 +1,24 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrar Rifas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Rifas Disponibles</h1>
+    <a href="{{ url_for('crear_rifa') }}">Crear Nueva Rifa</a>
+    <ul>
+        {% for rifa in rifas %}
+            <li>
+                <h2>{{ rifa[1] }}</h2>
+                <p>{{ rifa[2] }}</p>
+                <p>Boletos vendidos: {{ rifa[4] }} / {{ rifa[3] }}</p>
+                <a href="{{ url_for('participar', rifa_id=rifa[0]) }}">Participar</a>
+                <a href="{{ url_for('sorteo', rifa_id=rifa[0]) }}">Realizar Sorteo</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
